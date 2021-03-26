@@ -20,10 +20,14 @@ namespace Vuturetest
             string[] arr = { "dog", "cat", "large" };
             string resCensoredWord = CensoredWord(arr, "I have a cat named Meow and a dog name Woof. I love the dog a lot. He is larger than a small horse.");
 
+            string[] arr2 = {"Meow","Woof" };
+            string resCensoredWord2 = CensoredWord2(arr2, "I have a cat named Meow and a dog name Woof.I love the dog a lot.He is larger than a small horse.");
+
             Console.WriteLine("Result Letter Occurence: \n" + resLetterOccurence);
             Console.WriteLine("\nResult is Palindrome: \n"+ resIsPalindrome);
             Console.WriteLine("\nResult is Palindrome: \n"+ resIsPalindrome1);
             Console.WriteLine("\nResult is Censord Word: \n" + resCensoredWord);
+            Console.WriteLine("\nResult Censord Word2: \n" + resCensoredWord2);
 
         }
 
@@ -103,7 +107,18 @@ namespace Vuturetest
         }
 
 
-
+        /// <summary>
+        /// This methods for trackin the number of times
+        /// a tracked word appears in a given sentence. The string
+        /// is split and then iterated to see if any of the words are in the 
+        /// censored dictionary. If so they value of occurences for the censored word i s
+        /// incremented.
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <param name="senetence"></param>
+        /// <returns>
+        /// A String reflecting the contents of the dictionary.
+        /// </returns>
         public static String CensoredWord(string[] arr, String senetence) {
             Dictionary<string, int> censoredWords =  new Dictionary<string, int>();
             string res = " ";
@@ -129,8 +144,49 @@ namespace Vuturetest
                 sumValues += keyValues.Value;
             }
 
-            return res + "Total: " + sumValues;
+            return res + "Total :" + sumValues;
         }
+
+
+
+
+        /// <summary>
+        /// Works similiar to the function above however, the dictionary now containe
+        /// a censored word that will replace the uncensored word if found when looping.
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <param name="sentence"></param>
+        /// <returns>A censoreded string</returns>
+        public static String CensoredWord2(string[] arr, String sentence)
+        {
+            Dictionary<string, string> censoredWords = new Dictionary<string, string>();
+            int i = 0;
+            String[] words = sentence.Replace(".", " ").Split(" ");
+
+            //Add words to censored list, replace characters at required index
+            // and replace with $
+            foreach (string word in arr)
+            {
+                censoredWords.Add(word, word.Remove(1, 2).Insert(1, "$").Insert(2, "$"));
+            }
+              
+            foreach (string currWord in words)
+            {
+
+                if (censoredWords.ContainsKey(currWord))
+                {
+                    Console.WriteLine('a');       
+                    words[i] = censoredWords[currWord];
+                }
+                i += 1;
+            }
+
+
+
+            return string.Join(" ", words);
+        }
+
+
     }
 }
 
