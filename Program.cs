@@ -105,10 +105,31 @@ namespace Vuturetest
 
 
         public static String CensoredWord(string[] arr, String senetence) {
-            Dictionary<string, int> censoredWords;
+            Dictionary<string, int> censoredWords =  new Dictionary<string, int>();
+            string res = " ";
+            int sumValues = 0;
+            
+            //Add words to censored list
+            foreach (string word in arr){
+                censoredWords.Add(word, 0);
+            }
 
-        
-            return "sensoredword";
+            foreach (string word in senetence.Split(" ")) {
+
+                if (censoredWords.ContainsKey(word))
+                {
+                    censoredWords[word] = censoredWords[word] + 1;
+                }      
+                 
+            }
+
+            foreach (KeyValuePair<string, int> keyValues in censoredWords)
+            {
+                res += keyValues.Key + " : " + keyValues.Value + ", ";
+                sumValues += keyValues.Value;
+            }
+
+            return res + "Total: " + sumValues;
         }
     }
 }
