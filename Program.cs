@@ -14,8 +14,8 @@ namespace Vuturetest
             
             int resLetterOccurence = LetterOccurence("I have some cheese", 'e');
 
-            String resIsPalindrome = IsPalindrome("I have some cheese");
-            String resIsPalindrome1 = IsPalindrome("God saved Eva’s dog");
+            bool resIsPalindrome = IsPalindrome("I have some cheese");
+            bool resIsPalindrome1 = IsPalindrome("God saved Eva’s dog");
 
             string[] arr = { "dog", "cat", "large" };
             string resCensoredWord = CensoredWord(arr, "I have a cat named Meow and a dog name Woof. I love the dog a lot. He is larger than a small horse.");
@@ -74,10 +74,32 @@ namespace Vuturetest
 
 
 
+        /// <summary>
+        /// This method checks to see if a given string is palindrome or not
+        /// first the string is cleaned. Then we loop over the string checking id the current letter at i
+        /// is equal to the same charcter at location i from the end of the string.
+        /// </summary>
+        /// <param name="senetence"></param>
+        /// <returns>
+        /// A bool to determine if a string is or isnt  a palindrome.
+        /// </returns>
+        public static bool IsPalindrome(String senetence)
+        
 
-        public static String IsPalindrome(String senetence)
         {
-            return "IsPalindrome";
+            String sentence = senetence.Replace(" ", string.Empty).Replace("’", string.Empty).ToLower();
+
+
+            int length = sentence.Length;
+            for (int i = 0; i < length / 2; i++)
+            {
+                if (sentence[i] != sentence[length - i - 1])
+                    return false;
+            }
+
+            return true;
+
+
         }
 
 
