@@ -12,7 +12,7 @@ namespace Vuturetest
         static void Main(string[] args)
         {
             
-            String resLetterOccurence = LetterOccurence("I have some cheese", "e");
+            int resLetterOccurence = LetterOccurence("I have some cheese", 'e');
 
             String resIsPalindrome = IsPalindrome("I have some cheese");
             String resIsPalindrome1 = IsPalindrome("God saved Eva’s dog");
@@ -28,13 +28,53 @@ namespace Vuturetest
         }
 
 
+        /// <summary>
+        /// This function firstly remove the fullstop, then for each character in the string
+        /// checks if its currently stored in the dictionary. If it is not it is added
+        /// the dictionary is then update increasing the currences of the current letter by one.
+        /// 
+        /// The fianl statment retrives the value of the letter passed in.
+        /// </summary>
+        /// <param name="senetence"></param>
+        /// <param name="letter"></param>
+        /// <returns>
+        /// An int value reflecting the current value of occurences for a given letter.
+        /// </returns>
+        public static int LetterOccurence(String senetence, Char letter)
+        {   //Define dictionary for later use.
+            Dictionary<char, int> letterOccurence = new Dictionary<char, int>();
+           
 
-        public static String LetterOccurence(String senetence, String letter)
-        {
-            return "letter_occurence";
+
+
+            //Clean the String.
+            String trimmedSentemce = senetence.Trim(new Char[] { '.'});
+
+
+            foreach(char currLetter in trimmedSentemce)
+            {
+               
+                if (letterOccurence.ContainsKey(currLetter) == false)
+                {
+                    letterOccurence.Add(currLetter, 0);
+                }
+                letterOccurence[currLetter] = letterOccurence[currLetter] + 1;
+            }
+
+
+            if (letterOccurence.ContainsKey(letter))
+            {
+                return letterOccurence[letter];
+            }
+            return 0;
         }
 
- 
+
+
+
+
+
+
         public static String IsPalindrome(String senetence)
         {
             return "IsPalindrome";
@@ -44,6 +84,7 @@ namespace Vuturetest
 
         public static String CensoredWord(string[] arr, String senetence) {
             Dictionary<string, int> censoredWords;
+
         
             return "sensoredword";
         }
