@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Vuturetest
 {
-    class TaskThree
+public class TaskThree
     {
         /// <summary>
         /// This methods for trackin the number of times

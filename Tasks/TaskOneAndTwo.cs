@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Vuturetest
 {
-    class TaskOneAndTwo
+    public class TaskOneAndTwo
     {
 
         /// <summary>
